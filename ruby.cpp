@@ -14,8 +14,8 @@ const int numCols = 320;
 const int numRowSamples = (int)(numRows / pxBetweenSamples);
 const int numColSamples = (int)(numCols / pxBetweenSamples);
 const int redThreshold = 40;
-const int rubyPxSize = 32;
-const int marginOfError = 20;
+const int rubyPxSize = 26;
+const int marginOfError = 10;
 
 const char PositiveColour[3] = {255, 255, 0};   // yellow, shows up well on red
 const char NegativeColour[3] = {0, 128, 255}; // cyan, shows up well on black and white and gray and easily differentiable from yellow
@@ -37,15 +37,15 @@ int setPx(pixel targetPixel)
     {
         set_pixel(targetPixel.y, targetPixel.x, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
 
-        set_pixel(targetPixel.y+1, targetPixel.x, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
-        set_pixel(targetPixel.y+2, targetPixel.x, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
-        set_pixel(targetPixel.y-1, targetPixel.x, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
-        set_pixel(targetPixel.y-2, targetPixel.x, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
+        //set_pixel(targetPixel.y+1, targetPixel.x, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
+        //set_pixel(targetPixel.y+2, targetPixel.x, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
+        //set_pixel(targetPixel.y-1, targetPixel.x, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
+        //set_pixel(targetPixel.y-2, targetPixel.x, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
 
-        set_pixel(targetPixel.y, targetPixel.x+1, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
-        set_pixel(targetPixel.y, targetPixel.x+2, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
-        set_pixel(targetPixel.y, targetPixel.x-1, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
-        set_pixel(targetPixel.y, targetPixel.x-2, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
+        //set_pixel(targetPixel.y, targetPixel.x+1, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
+        //set_pixel(targetPixel.y, targetPixel.x+2, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
+        //set_pixel(targetPixel.y, targetPixel.x-1, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
+        //set_pixel(targetPixel.y, targetPixel.x-2, PositiveColour[0], PositiveColour[1], PositiveColour[2]);
         
     }
     else
