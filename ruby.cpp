@@ -72,7 +72,7 @@ int main()
 
     open_screen_stream();
     int relativeRedBuffer[40][30];
-    std::cout << relativeRedBuffer << std::endl;
+    std::cout << &relativeRedBuffer << std::endl;
 
     while (true)
     {
