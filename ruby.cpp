@@ -70,8 +70,7 @@ int main()
     std::cout << "Error: " << err << std::endl;
 
     open_screen_stream();
-    
-    int buffer[bufferSize]; 
+     
     while (true)
     {
         take_picture();
