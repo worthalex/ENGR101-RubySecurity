@@ -72,7 +72,7 @@ int main()
 
     open_screen_stream();
     int relativeRedBuffer[numColSamples][numRowSamples];
-
+    std::cout << "0";
     while (true)
     {
         int errors = 0;
