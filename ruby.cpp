@@ -91,9 +91,11 @@ int main()
 
                 if (sample.relativeRedBuffer1 != 1298.13783)
                 {
-                            errors += (sample.relativeRed < sample.relativeRedBuffer1 - marginOfError ||
-                            sample.relativeRed > sample.relativeRedBuffer1 + marginOfError ) ? 1 : 0;
-                            std::cout << "Prev. Red = " + sample.relativeRedBuffer1 + "red = " + sample.relativeRed << std::endl;
+                    errors += (sample.relativeRed < sample.relativeRedBuffer1 - marginOfError ||
+                    sample.relativeRed > sample.relativeRedBuffer1 + marginOfError ) ? 1 : 0;
+                    std::cout << "buffrr = " + std::to_string(sample.relativeRedBuffer1);
+                    std::cout << " | relred = " + std::to_string(sample.relativeRed) << std::endl;
+
                 }
                 sample.relativeRedBuffer1 = sample.relativeRed;
                 set_pixel(sample.y, sample.x, sample.relativeRed,sample.relativeRed,sample.relativeRed);
