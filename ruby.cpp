@@ -30,6 +30,8 @@ struct pixel
     //int b;
     //int v;
     double relativeRed;
+    double relativeRedBuffer1 = 1298.13783;
+    
 };
 
 int setPx(pixel targetPixel)
@@ -70,12 +72,7 @@ int main()
     int err = init(0);
     std::cout << "Error: " << err << std::endl;
 
-    open_screen_stream();
-    double relativeRedBuffer[numColSamples][numRowSamples];
-    
-    
-    
-    
+    open_screen_stream();    
     
     
     while (true)
@@ -92,11 +89,12 @@ int main()
                 get_pixel(sample.y, sample.x, 0),
                 (double)sample.r /((get_pixel(sample.y, sample.x, 1) + get_pixel(sample.y, sample.x, 2) + redThreshold )/ 2)};
 
-
-                errors += (sample.relativeRed < relativeRedBuffer[sample.y][sample.x] - marginOfError ||
-                           sample.relativeRed > relativeRedBuffer[sample.y][sample.x] + marginOfError ) ? 1 : 0;
-                
-                relativeRedBuffer[sample.y][sample.x] = sample.relativeRed;
+                if (sample.relativeRedBuffer1 != 1298.13783)
+                {
+                            errors += (sample.relativeRed < sample.relativeRedBuffer1 - marginOfError ||
+                            sample.relativeRed > sample.relativeRedBuffer1 + marginOfError ) ? 1 : 0;
+                }
+                sample.relativeRedBuffer1 = sample.relativeRed;
                 set_pixel(sample.y, sample.x, sample.relativeRed,sample.relativeRed,sample.relativeRed);
             }
         }
