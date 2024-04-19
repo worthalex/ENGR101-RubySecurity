@@ -30,7 +30,7 @@ struct pixel
     //int b;
     //int v;
     double relativeRed;
-    double relativeRedBuffer1 = 1298.13783;
+    double relativeRedBuffer1 = 1298;
     
 };
 
@@ -89,7 +89,7 @@ int main()
                 get_pixel(sample.y, sample.x, 0),
                 (double)sample.r /((get_pixel(sample.y, sample.x, 1) + get_pixel(sample.y, sample.x, 2) + redThreshold )/ 2)};
 
-                if (sample.relativeRedBuffer1 != 1298.13783)
+                if (sample.relativeRedBuffer1 != 1298)
                 {
                     errors += (sample.relativeRed < sample.relativeRedBuffer1 - marginOfError ||
                     sample.relativeRed > sample.relativeRedBuffer1 + marginOfError ) ? 1 : 0;
