@@ -98,6 +98,8 @@ int main()
                 set_pixel(sample.y, sample.x, sample.relativeRed,sample.relativeRed,sample.relativeRed);
             }
         }
+        std::cout << "errors" << std::endl;
+        
         if (errors > acceptableErrors)
         {
             std::cout << "RUBY STOLEN" << std::endl;
