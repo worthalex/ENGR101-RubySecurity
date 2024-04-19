@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include "E101.h"
-const int pxBetweenSamples = 16;
+const int pxBetweenSamples = 8;
 const int numRows = 240;
 const int numCols = 320;
 const int numRowSamples = (int)(numRows / pxBetweenSamples);
