@@ -112,13 +112,8 @@ int main()
                 std::cout << "Not enough red for two (2) frame(s)" << std::endl;
             case 3:
                 std::cout << "Not enough red for three (3) frame(s)" << std::endl;
-            case 4:
-                std::cout << "Not enough red for four (4) frame(s)" << std::endl;
-            case 5:
-                std::cout << "Not enough red for five (5) frame(s)" << std::endl;
-            case 6:
-                std::cout << "Not enough red for six (6) frame(s)" << std::endl;
             case bufferSize:
+                std::cout << "Not enough red for four (4) frame(s)" << std::endl;
                 std::cout << "CODE RED, RUBY STOLEN!!!! AAAAAAAAAAAAA" << std::endl;
         }
         update_screen();
