@@ -88,11 +88,11 @@ int main()
             }
         }
 
-        if (numRedPx < marginOfError + rubyPxSize)
+        if (numRedPx < rubyPxSize - marginOfError)
         {
             std::cout << "NO RUBY DETECTED : ALERT! THIEF!" << std::endl;
         }
-        else if (numRedPx > marginOfError + rubyPxSize)
+        else if (numRedPx > rubyPxSize + marginOfError)
         {
             std::cout << "DUBLICATE RUBY DETECTED : ALERT! THEIF!" << std::endl;
         }
