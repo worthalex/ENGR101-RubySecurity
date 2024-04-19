@@ -72,6 +72,7 @@ int main()
 
     open_screen_stream();
     int relativeRedBuffer[numColSamples][numRowSamples];
+    // std::cout << relativeRedBuffer << std::endl;
 
     while (true)
     {
@@ -84,15 +85,15 @@ int main()
             {
                 pixel sample = {col, row, get_pixel(sample.y, sample.x, 0) / ((get_pixel(sample.y, sample.x, 1) + get_pixel(sample.y, sample.x, 1) + redThreshold )/ 3)};
 
-                errors += (sample.relativeRed < relativeRedBuffer[sample.x][sample.y] - marginOfError ||
-                          sample.relativeRed > relativeRedBuffer[sample.x][sample.y] + marginOfError ) ? 1 : 0;
-                relativeRedBuffer[sample.x][sample.y] = sample.relativeRed;
+                errors += (sample.relativeRed < relativeRedBuffer[sample.y][sample.x] - marginOfError ||
+                          sample.relativeRed > relativeRedBuffer[sample.y][sample.x] + marginOfError ) ? 1 : 0;
+                relativeRedBuffer[sample.y][sample.x] = sample.relativeRed;
                 set_pixel(sample.y, sample.x, sample.relativeRed,sample.relativeRed,sample.relativeRed);
             }
         }
         if (errors > acceptableErrors)
         {
-            std::cout << "RUBY STOLEN";
+            std::cout << "RUBY STOLEN" << std::endl;
         }
 
 
