@@ -81,7 +81,7 @@ int main()
         {
             for (int col = 0; col < numCols; col += pxBetweenSamples)
             {
-                pixel sample = {col, row, get_pixel(sample.y, sample.x, 0), sample.r /( (get_pixel(sample.y, sample.x, 1) + get_pixel(sample.y, sample.x, 2) + redThreshold )/ 3)};
+                pixel sample = {col, row, get_pixel(sample.y, sample.x, 0), (double)sample.r /( (get_pixel(sample.y, sample.x, 1) + get_pixel(sample.y, sample.x, 2) + redThreshold )/ 3)};
                 errors += (sample.relativeRed < relativeRedBuffer[sample.y][sample.x] - marginOfError ||
                           sample.relativeRed > relativeRedBuffer[sample.y][sample.x] + marginOfError ) ? 1 : 0;
                 relativeRedBuffer[sample.y][sample.x] = sample.relativeRed;
