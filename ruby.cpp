@@ -71,8 +71,7 @@ int main()
     std::cout << "Error: " << err << std::endl;
 
     open_screen_stream();
-    int relativeRedBuffer[40][30];
-    std::cout << &relativeRedBuffer << std::endl;
+    int relativeRedBuffer[numColSamples][numRowSamples];
 
     while (true)
     {
@@ -84,9 +83,10 @@ int main()
             for (int col = 0; col < numCols; col += pxBetweenSamples)
             {
                 pixel sample = {col, row, get_pixel(sample.y, sample.x, 0) / ((get_pixel(sample.y, sample.x, 1) + get_pixel(sample.y, sample.x, 1) + redThreshold )/ 3)};
-
+                std::cout << "1";
                 errors += (sample.relativeRed < relativeRedBuffer[sample.y][sample.x] - marginOfError ||
                           sample.relativeRed > relativeRedBuffer[sample.y][sample.x] + marginOfError ) ? 1 : 0;
+                std::cout << "2";
                 relativeRedBuffer[sample.y][sample.x] = sample.relativeRed;
                 set_pixel(sample.y, sample.x, sample.relativeRed,sample.relativeRed,sample.relativeRed);
             }
