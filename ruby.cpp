@@ -14,8 +14,8 @@ const int numCols = 320;
 const int numRowSamples = (int)(numRows / pxBetweenSamples);
 const int numColSamples = (int)(numCols / pxBetweenSamples);
 const int redThreshold = 40;
-const int rubyPxSize = 26;
-const int marginOfError = 10;
+const int rubyPxSize = 36;
+const int marginOfError = 15;
 
 const char PositiveColour[3] = {255, 255, 0};   // yellow, shows up well on red
 const char NegativeColour[3] = {0, 128, 255}; // cyan, shows up well on black and white and gray and easily differentiable from yellow
