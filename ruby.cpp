@@ -13,10 +13,9 @@ const int numRows = 240;
 const int numCols = 320;
 const int numRowSamples = (int)(numRows / pxBetweenSamples);
 const int numColSamples = (int)(numCols / pxBetweenSamples);
-const int redThreshold = 180;
-const int rubyPxSize = 24;
-const int marginOfError = 10;
-const int bufferSize = 4;
+const int redThreshold = 40;
+const int rubyPxSize = 32;
+const int marginOfError = 20;
 
 const char PositiveColour[3] = {255, 255, 0};   // yellow, shows up well on red
 const char NegativeColour[3] = {0, 128, 255}; // cyan, shows up well on black and white and gray and easily differentiable from yellow
@@ -84,7 +83,7 @@ int main()
             {
                 pixel sample = {col, row, get_pixel(sample.y, sample.x, 0),
                 get_pixel(sample.y, sample.x, 1),get_pixel(sample.y, sample.x, 2),get_pixel(sample.y, sample.x, 3),
-                (sample.r > (sample.g + sample.b + redThreshold )/ 3) ? true : false};
+                (sample.r > (sample.g + sample.b + redThreshold )/ 2) ? true : false};
                 if (sample.isRed) {numRedPx++;}
                 setPx(sample);
             }
