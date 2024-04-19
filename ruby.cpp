@@ -84,7 +84,7 @@ int main()
             {
                 pixel sample = {col, row, get_pixel(sample.y, sample.x, 0),
                 get_pixel(sample.y, sample.x, 1),get_pixel(sample.y, sample.x, 2),get_pixel(sample.y, sample.x, 3),
-                (sample.r > sample.g + sample.b) ? true : false};
+                (sample.r > (sample.g + sample.b + redThreshold )/ 3) ? true : false};
                 if (sample.isRed) {numRedPx++;}
                 setPx(sample);
             }
