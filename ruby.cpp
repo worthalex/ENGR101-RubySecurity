@@ -85,21 +85,21 @@ int main()
                 pixel sample = {col, row, get_pixel(sample.y, sample.x, 0),
                 get_pixel(sample.y, sample.x, 1),get_pixel(sample.y, sample.x, 2),get_pixel(sample.y, sample.x, 3),
                 (sample.r > sample.g + sample.b) ? true : false};
-                if (sample.isRed) {numRedPx++}
+                if (sample.isRed) {numRedPx++;}
                 setPx(sample);
             }
         }
-        buffer[0] = numRedPx
+        buffer[0] = numRedPx;
         for (int i = 1; i < bufferSize; i++)
         {
-            buffer[i] = buffer[i-1]
+            buffer[i] = buffer[i-1];
         }
         int framesNotEnoughRed = 0;
-        for (i : buffer)
+        for (int i : buffer)
         {
             if (i < rubyPxSize + marginOfError)
             {
-                framesNotEnoughRed++   
+                framesNotEnoughRed++;
             }
         }
         switch (framesNotEnoughRed)
