@@ -74,7 +74,7 @@ int main()
 
     open_screen_stream();    
     
-    
+    int at = 0;
     while (true)
     {
         int errors = 0;
@@ -93,6 +93,7 @@ int main()
                 {
                             errors += (sample.relativeRed < sample.relativeRedBuffer1 - marginOfError ||
                             sample.relativeRed > sample.relativeRedBuffer1 + marginOfError ) ? 1 : 0;
+                            std::cout << "Prev. Red = " + sample.relativeRedBuffer1 + "red = " + sample.relativeRed << std::endl;
                 }
                 sample.relativeRedBuffer1 = sample.relativeRed;
                 set_pixel(sample.y, sample.x, sample.relativeRed,sample.relativeRed,sample.relativeRed);
@@ -131,6 +132,13 @@ int main()
         // }
         update_screen();
         sleep1(1);
+        at++;
+        if (at > 5)
+        {
+            std::cout << "stop" << std::endl;
+            stoph();
+            break;
+        }
     }
 
     // while (true)
