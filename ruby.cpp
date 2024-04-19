@@ -71,8 +71,8 @@ int main()
     std::cout << "Error: " << err << std::endl;
 
     open_screen_stream();
-    int relativeRedBuffer[numColSamples][numRowSamples];
-    // std::cout << relativeRedBuffer << std::endl;
+    int relativeRedBuffer[40][30];
+    std::cout << relativeRedBuffer << std::endl;
 
     while (true)
     {
