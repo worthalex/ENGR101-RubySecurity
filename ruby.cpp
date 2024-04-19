@@ -13,9 +13,9 @@ const int numRows = 240;
 const int numCols = 320;
 const int numRowSamples = (int)(numRows / pxBetweenSamples);
 const int numColSamples = (int)(numCols / pxBetweenSamples);
-const int redThreshold = 200;
-const int rubyPxSize = 10;
-const int marginOfError = 6;
+const int redThreshold = 100;
+const int rubyPxSize = 24;
+const int marginOfError = 10;
 const int bufferSize = 4;
 
 const char PositiveColour[3] = {255, 255, 0};   // yellow, shows up well on red
@@ -89,32 +89,14 @@ int main()
                 setPx(sample);
             }
         }
-        buffer[0] = numRedPx;
-        for (int i = 1; i < bufferSize; i++)
+
+        if (numRedPx < marginOfError + rubyPxSize)
         {
-            buffer[i] = buffer[i-1];
+            std::cout << "NO RUBY DETECTED : ALERT! THIEF!" << std::endl;
         }
-        int framesNotEnoughRed = 0;
-        for (int i : buffer)
+        else if (numRedPx > marginOfError + rubyPxSize)
         {
-            if (i < rubyPxSize + marginOfError)
-            {
-                framesNotEnoughRed++;
-            }
-        }
-        switch (framesNotEnoughRed)
-        {
-            case 0:
-                break;
-            case 1:
-                std::cout << "Not enough red for one (1) frame(s)" << std::endl;
-            case 2:
-                std::cout << "Not enough red for two (2) frame(s)" << std::endl;
-            case 3:
-                std::cout << "Not enough red for three (3) frame(s)" << std::endl;
-            case bufferSize:
-                std::cout << "Not enough red for four (4) frame(s)" << std::endl;
-                std::cout << "CODE RED, RUBY STOLEN!!!! AAAAAAAAAAAAA" << std::endl;
+            std::cout << "DUBLICATE RUBY DETECTED : ALERT! THEIF!" << std::endl;
         }
         update_screen();
         sleep1(10);
