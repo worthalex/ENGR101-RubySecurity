@@ -17,7 +17,7 @@ const int redThreshold = 2;
 const int centerRow = 120;
 const int centerCol = 160;
 
-const int offset = 6;
+const int offset = 26;
 
 const int top = centerRow - offset;
 const int bot = centerRow + offset;
