@@ -33,10 +33,10 @@ int main()
     open_screen_stream();
     
     double old[4] = {
-        get_pixel(120, 140, 0) / get_pixel(120, 140, 3) + 1, // left
-        get_pixel(120, 180, 0) / get_pixel(120, 180, 3) + 1, // right
-        get_pixel(100, 160, 0) / get_pixel(100, 160, 3) + 1, // top
-        get_pixel(140, 160, 0) / get_pixel(140, 160, 3) + 1, // bottom
+        (double)get_pixel(120, 140, 0) / (double)get_pixel(120, 140, 3) + 1, // left
+        (double)get_pixel(120, 180, 0) / (double)get_pixel(120, 180, 3) + 1, // right
+        (double)get_pixel(100, 160, 0) / (double)get_pixel(100, 160, 3) + 1, // top
+        (double)get_pixel(140, 160, 0) / (double)get_pixel(140, 160, 3) + 1, // bottom
     };
     std::cout << ("arr1") << std::endl;
     
@@ -45,10 +45,10 @@ int main()
         std::cout << ("while") << std::endl;
         take_picture();
         double nEw[4] = {
-            get_pixel(120, 140, 0) / get_pixel(120, 140, 3) + 1, // left
-            get_pixel(120, 180, 0) / get_pixel(120, 180, 3) + 1, // right
-            get_pixel(100, 160, 0) / get_pixel(100, 160, 3) + 1, // top
-            get_pixel(140, 160, 0) / get_pixel(140, 160, 3) + 1, // bottom
+            (double)get_pixel(120, 140, 0) / (double)get_pixel(120, 140, 3) + 1, // left
+            (double)get_pixel(120, 180, 0) / (double)get_pixel(120, 180, 3) + 1, // right
+            (double)get_pixel(100, 160, 0) / (double)get_pixel(100, 160, 3) + 1, // top
+            (double)get_pixel(140, 160, 0) / (double)get_pixel(140, 160, 3) + 1, // bottom
         };
         std::cout << ("arr2") << std::endl;
         for (int i = 0; i <= 3; i++)
