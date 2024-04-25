@@ -24,7 +24,7 @@ const int lft = centerCol - offset;
 const int rgt = centerCol + offset;
 
 const double relRed = 2.9;
-const double margin = 0.7;
+const double margin = 1.2;
 
 int main()
 {
@@ -32,14 +32,14 @@ int main()
     std::cout << "Error: " << err << std::endl;
     open_screen_stream();
 
-    while (true)
-    {
-        take_picture();
-        std::cout << ((double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3)) << std::endl;
-        sleep1(1000);
-        convert_camera_to_screen();
-        update_screen();
-    }
+    // while (true)
+    // {
+    //     take_picture();
+    //     std::cout << ((double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3)) << std::endl;
+    //     sleep1(1000);
+    //     convert_camera_to_screen();
+    //     update_screen();
+    // }
     // double initRelRed = (double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3);
     // if (initRelRed > relRed + margin || initRelRed < relRed - margin)
     // {
