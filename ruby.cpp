@@ -94,11 +94,11 @@ int main()
                 stoph();
                 return 0;
             }
-            if (firstFrame)
-            {
-                std::cout << ("Ruby monitor started, ruby is present") << std::endl;
-                firstFrame = false;
-            }
+        }
+        if (firstFrame)
+        {
+            std::cout << ("Ruby monitor started, ruby is present") << std::endl;
+            firstFrame = false;
         }
         
     }
