@@ -62,6 +62,13 @@ int main()
             (double)get_pixel(bot, centerCol, 0) / (double)get_pixel(bot, centerCol, 3) + 1, // bottom
         };
         // std::cout << ("arr2") << std::endl;
+        
+        set_pixel(centerRow, lft, 100, 255, 100);
+        set_pixel(centerRow, rgt, 100, 255, 100);
+        set_pixel(top, centerCol, 100, 255, 100);
+        set_pixel(bot, centerCol, 100, 255, 100);
+        update_screen();
+
         for (int i = 0; i <= 3; i++)
         {
             if (pixels[i] > relRed + margin || pixels[i] < relRed - margin)
@@ -70,12 +77,6 @@ int main()
                 stoph();
             }
         }
-        
-        set_pixel(centerRow, lft, 100, 255, 100);
-        set_pixel(centerRow, rgt, 100, 255, 100);
-        set_pixel(top, centerCol, 100, 255, 100);
-        set_pixel(bot, centerCol, 100, 255, 100);
-        update_screen();
         
     }
     
