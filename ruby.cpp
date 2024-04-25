@@ -13,14 +13,17 @@
 // const int numCols = 320;
 // const int numRowSamples = (int)(numCols / pxBetweenSamples);
 // const int numColSamples = (int)(numRows / pxBetweenSamples);
-const int redThreshold = 40;
+const int redThreshold = 2;
 const int centerRow = 120;
 const int centerCol = 160;
 
-const int lft = 132;
-const int rgt = 188;
-const int top = 92;
-const int bot = 148;
+const int offset = 6;
+
+const int top = centerRow - offset;
+const int bot = centerRow + offset;
+const int lft = centerCol - offset;
+const int rgt = centerCol + offset;
+
 
 bool check_if_different(double old, double nEw)
 {
