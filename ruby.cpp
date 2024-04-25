@@ -31,20 +31,20 @@ int main()
     open_screen_stream();
     
     int old[4] = {
-        get_pixel(120, 140, 0) / get_pixel(120, 140, 3), // left
-        get_pixel(120, 180, 0) / get_pixel(120, 180, 3), // right
-        get_pixel(100, 160, 0) / get_pixel(100, 160, 3), // top
-        get_pixel(140, 160, 0) / get_pixel(140, 160, 3), // bottom
+        get_pixel(120, 140, 0) / get_pixel(120, 140, 3) + 1, // left
+        get_pixel(120, 180, 0) / get_pixel(120, 180, 3) + 1, // right
+        get_pixel(100, 160, 0) / get_pixel(100, 160, 3) + 1, // top
+        get_pixel(140, 160, 0) / get_pixel(140, 160, 3) + 1, // bottom
     };
     
     while (true)
     {
         take_picture();
         int nEw[4] = {
-            get_pixel(120, 140, 0) / get_pixel(120, 140, 3), // left
-            get_pixel(120, 180, 0) / get_pixel(120, 180, 3), // right
-            get_pixel(100, 160, 0) / get_pixel(100, 160, 3), // top
-            get_pixel(140, 160, 0) / get_pixel(140, 160, 3), // bottom
+            get_pixel(120, 140, 0) / get_pixel(120, 140, 3) + 1, // left
+            get_pixel(120, 180, 0) / get_pixel(120, 180, 3) + 1, // right
+            get_pixel(100, 160, 0) / get_pixel(100, 160, 3) + 1, // top
+            get_pixel(140, 160, 0) / get_pixel(140, 160, 3) + 1, // bottom
         };
 
         for (int i = 0; i <= 3; i++)
