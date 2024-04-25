@@ -44,8 +44,13 @@ int main()
     {
         // std::cout << ("while") << std::endl;
         take_picture();
+        set_pixel(120, 140, 100, 255, 100);
+        set_pixel(120, 180, 100, 255, 100);
+        set_pixel(100, 160, 100, 255, 100);
+        set_pixel(140, 160, 100, 255, 100);
         convert_camera_to_screen();
         update_screen();
+
         double nEw[4] = {
             (double)get_pixel(120, 140, 0) / (double)get_pixel(120, 140, 3) + 1, // left
             (double)get_pixel(120, 180, 0) / (double)get_pixel(120, 180, 3) + 1, // right
