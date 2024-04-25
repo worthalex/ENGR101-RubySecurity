@@ -55,7 +55,7 @@ int main()
         // std::cout << ("arr2") << std::endl;
         for (int i = 0; i <= 3; i++)
         {
-            if (check_if_different(pixels[i] > relRed + margin || pixels[i] < relRed - margin))
+            if (pixels[i] > relRed + margin || pixels[i] < relRed - margin)
             {
                 std::cout << ("ALERT!!! Ruby stolen!") << std::endl;
                 stoph();
