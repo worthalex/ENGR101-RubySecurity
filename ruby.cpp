@@ -75,7 +75,7 @@ int main()
             {
                 std::cout << i << std::endl;
                 std::cout << pixels[i] << std::endl;
-                std::cout << (pixels[i] > relRed + margin || pixels[i] < relRed - margin) << std::endl;
+                std::cout << relRed; std::cout << " +- "; std::cout << margin << std::endl;
                 std::cout << ("ALERT!!! Ruby stolen!") << std::endl;
                 // stoph();
             }
