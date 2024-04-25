@@ -62,7 +62,7 @@ int main()
             (double)get_pixel(bot, centerCol, 0) / (double)get_pixel(bot, centerCol, 3) + 1, // bottom
         };
         // std::cout << ("arr2") << std::endl;
-        
+
         set_pixel(centerRow, lft, 100, 255, 100);
         set_pixel(centerRow, rgt, 100, 255, 100);
         set_pixel(top, centerCol, 100, 255, 100);
@@ -73,8 +73,11 @@ int main()
         {
             if (pixels[i] > relRed + margin || pixels[i] < relRed - margin)
             {
+                std::cout << i << std::endl;
+                std::cout << pixels[i] << std::endl;
+                std::cout << (pixels[i] > relRed + margin || pixels[i] < relRed - margin) << std::endl;
                 std::cout << ("ALERT!!! Ruby stolen!") << std::endl;
-                stoph();
+                // stoph();
             }
         }
         
