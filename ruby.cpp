@@ -38,6 +38,8 @@ int main()
         take_picture();
         std::cout << get_pixel(centerRow, centerCol, 0) / get_pixel(centerRow, centerCol, 3) << std::cout;
         sleep1(1000);
+        convert_camera_to_screen();
+        update_screen();
     }
     // double initRelRed = (double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3);
     // if (initRelRed > relRed + margin || initRelRed < relRed - margin)
@@ -75,7 +77,7 @@ int main()
     //     set_pixel(bot, centerCol, 100, 255, 100);
     //     update_screen();
         
-    }
+    //}
     
     close_screen_stream();
     return 0;
