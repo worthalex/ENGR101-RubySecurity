@@ -32,14 +32,14 @@ int main()
     std::cout << "Error: " << err << std::endl;
     open_screen_stream();
 
-    // while (true)
-    // {
-    //     take_picture();
-    //     std::cout << ((double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3)) << std::endl;
-    //     sleep1(1000);
-    //     convert_camera_to_screen();
-    //     update_screen();
-    // }
+    while (true)
+    {
+        take_picture();
+        std::cout << ((double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3)) << std::endl;
+        sleep1(1000);
+        convert_camera_to_screen();
+        update_screen();
+    }
     // double initRelRed = (double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3);
     // if (initRelRed > relRed + margin || initRelRed < relRed - margin)
     // {
@@ -63,10 +63,10 @@ int main()
         convert_camera_to_screen();
 
         double pixels[4] = {
-            (double)get_pixel(centerRow, lft, 0) / (double)get_pixel(centerRow, lft, 3) + 1, // left
-            (double)get_pixel(centerRow, rgt, 0) / (double)get_pixel(centerRow, rgt, 3) + 1, // right
-            (double)get_pixel(top, centerCol, 0) / (double)get_pixel(top, centerCol, 3) + 1, // top
-            (double)get_pixel(bot, centerCol, 0) / (double)get_pixel(bot, centerCol, 3) + 1, // bottom
+            (double)get_pixel(centerRow, lft, 0) / (double)get_pixel(centerRow, lft, 3), // left
+            (double)get_pixel(centerRow, rgt, 0) / (double)get_pixel(centerRow, rgt, 3), // right
+            (double)get_pixel(top, centerCol, 0) / (double)get_pixel(top, centerCol, 3), // top
+            (double)get_pixel(bot, centerCol, 0) / (double)get_pixel(bot, centerCol, 3), // bottom
         };
         // std::cout << ("arr2") << std::endl;
 
