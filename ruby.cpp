@@ -15,7 +15,7 @@ const int numRowSamples = (int)(numCols / pxBetweenSamples);
 const int numColSamples = (int)(numRows / pxBetweenSamples);
 const int redThreshold = 40;
 
-bool check_if_different(int old, int nEw)
+bool check_if_different(double old, double nEw)
 {
     if ((nEw + old)/ 2 > (old * 2) + redThreshold || (nEw + old)/ 2 > (old * 2) + redThreshold)
     {
@@ -30,7 +30,7 @@ int main()
     std::cout << "Error: " << err << std::endl;
     open_screen_stream();
     
-    int old[4] = {
+    double old[4] = {
         get_pixel(120, 140, 0) / get_pixel(120, 140, 3) + 1, // left
         get_pixel(120, 180, 0) / get_pixel(120, 180, 3) + 1, // right
         get_pixel(100, 160, 0) / get_pixel(100, 160, 3) + 1, // top
@@ -40,7 +40,7 @@ int main()
     while (true)
     {
         take_picture();
-        int nEw[4] = {
+        double nEw[4] = {
             get_pixel(120, 140, 0) / get_pixel(120, 140, 3) + 1, // left
             get_pixel(120, 180, 0) / get_pixel(120, 180, 3) + 1, // right
             get_pixel(100, 160, 0) / get_pixel(100, 160, 3) + 1, // top
