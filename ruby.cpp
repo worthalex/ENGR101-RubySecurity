@@ -24,7 +24,7 @@ const int lft = centerCol - offset;
 const int rgt = centerCol + offset;
 
 const double relRed = 2.9;
-const double margin = 0.4;
+const double margin = 0.5;
 
 int main()
 {
