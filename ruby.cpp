@@ -32,41 +32,48 @@ int main()
     std::cout << "Error: " << err << std::endl;
     open_screen_stream();
     take_picture();
-    double initRelRed = (double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3);
-    if (initRelRed > relRed + margin || initRelRed < relRed - margin)
-    {
-        std::cout << "ALERT!!! Ruby missing at startup!" << std::endl;
-        stoph();
-    }
-    // std::cout << ("arr1") << std::endl;
-    
+
     while (true)
     {
-        // std::cout << ("while") << std::endl;
         take_picture();
-        convert_camera_to_screen();
+        std::cout << get_pixel(centerRow, centerCol, 0) / get_pixel(centerRow, centerCol, 3) << std::cout;
+        sleep1(1000);
+    }
+    // double initRelRed = (double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3);
+    // if (initRelRed > relRed + margin || initRelRed < relRed - margin)
+    // {
+    //     std::cout << "ALERT!!! Ruby missing at startup!" << std::endl;
+    //     stoph();
+    // }
+    // // std::cout << ("arr1") << std::endl;
+    
+    // while (true)
+    // {
+    //     // std::cout << ("while") << std::endl;
+    //     take_picture();
+    //     convert_camera_to_screen();
 
-        double pixels[4] = {
-            (double)get_pixel(centerRow, lft, 0) / (double)get_pixel(centerRow, lft, 3) + 1, // left
-            (double)get_pixel(centerRow, rgt, 0) / (double)get_pixel(centerRow, rgt, 3) + 1, // right
-            (double)get_pixel(top, centerCol, 0) / (double)get_pixel(top, centerCol, 3) + 1, // top
-            (double)get_pixel(bot, centerCol, 0) / (double)get_pixel(bot, centerCol, 3) + 1, // bottom
-        };
-        // std::cout << ("arr2") << std::endl;
-        for (int i = 0; i <= 3; i++)
-        {
-            if (pixels[i] > relRed + margin || pixels[i] < relRed - margin)
-            {
-                std::cout << ("ALERT!!! Ruby stolen!") << std::endl;
-                stoph();
-            }
-        }
+    //     double pixels[4] = {
+    //         (double)get_pixel(centerRow, lft, 0) / (double)get_pixel(centerRow, lft, 3) + 1, // left
+    //         (double)get_pixel(centerRow, rgt, 0) / (double)get_pixel(centerRow, rgt, 3) + 1, // right
+    //         (double)get_pixel(top, centerCol, 0) / (double)get_pixel(top, centerCol, 3) + 1, // top
+    //         (double)get_pixel(bot, centerCol, 0) / (double)get_pixel(bot, centerCol, 3) + 1, // bottom
+    //     };
+    //     // std::cout << ("arr2") << std::endl;
+    //     for (int i = 0; i <= 3; i++)
+    //     {
+    //         if (pixels[i] > relRed + margin || pixels[i] < relRed - margin)
+    //         {
+    //             std::cout << ("ALERT!!! Ruby stolen!") << std::endl;
+    //             stoph();
+    //         }
+    //     }
         
-        set_pixel(centerRow, lft, 100, 255, 100);
-        set_pixel(centerRow, rgt, 100, 255, 100);
-        set_pixel(top, centerCol, 100, 255, 100);
-        set_pixel(bot, centerCol, 100, 255, 100);
-        update_screen();
+    //     set_pixel(centerRow, lft, 100, 255, 100);
+    //     set_pixel(centerRow, rgt, 100, 255, 100);
+    //     set_pixel(top, centerCol, 100, 255, 100);
+    //     set_pixel(bot, centerCol, 100, 255, 100);
+    //     update_screen();
         
     }
     
