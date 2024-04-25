@@ -16,15 +16,15 @@
 const int centerRow = 120;
 const int centerCol = 160;
 
-const int offset = 26;
+const int offset = 20;
 
 const int top = centerRow - offset;
 const int bot = centerRow + offset;
 const int lft = centerCol - offset;
 const int rgt = centerCol + offset;
 
-const double relRed = 2.6;
-const double margin = 1;
+const double relRed = 2.9;
+const double margin = 0.4;
 
 int main()
 {
