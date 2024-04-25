@@ -42,6 +42,7 @@ int main()
     std::cout << "Error: " << err << std::endl;
     open_screen_stream();
     take_picture();
+    std::cout << (double)get_pixel(centerRow, lft, 0) / (double)get_pixel(centerRow, lft, 3) + 1 << std::endl;
     double old[4] = {
         (double)get_pixel(centerRow, lft, 0) / (double)get_pixel(centerRow, lft, 3) + 1, // left
         (double)get_pixel(centerRow, rgt, 0) / (double)get_pixel(centerRow, rgt, 3) + 1, // right
