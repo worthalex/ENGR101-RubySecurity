@@ -17,10 +17,10 @@ const int redThreshold = 40;
 
 bool check_if_different(double old, double nEw)
 {
-    std::cout << ("call") << std::endl;
+    // std::cout << ("call") << std::endl;
     if ((nEw + old)/ 2 > (old * 2) + redThreshold || (nEw + old)/ 2 > (old * 2) + redThreshold)
     {
-        std::cout << ("gorg") << std::endl;
+        // std::cout << ("gorg") << std::endl;
         return true;
     }
     return false;
@@ -31,18 +31,18 @@ int main()
     int err = init(0);
     std::cout << "Error: " << err << std::endl;
     open_screen_stream();
-    
+    take_picture();
     double old[4] = {
         (double)get_pixel(120, 140, 0) / (double)get_pixel(120, 140, 3) + 1, // left
         (double)get_pixel(120, 180, 0) / (double)get_pixel(120, 180, 3) + 1, // right
         (double)get_pixel(100, 160, 0) / (double)get_pixel(100, 160, 3) + 1, // top
         (double)get_pixel(140, 160, 0) / (double)get_pixel(140, 160, 3) + 1, // bottom
     };
-    std::cout << ("arr1") << std::endl;
+    // std::cout << ("arr1") << std::endl;
     
     while (true)
     {
-        std::cout << ("while") << std::endl;
+        // std::cout << ("while") << std::endl;
         take_picture();
         double nEw[4] = {
             (double)get_pixel(120, 140, 0) / (double)get_pixel(120, 140, 3) + 1, // left
@@ -50,7 +50,7 @@ int main()
             (double)get_pixel(100, 160, 0) / (double)get_pixel(100, 160, 3) + 1, // top
             (double)get_pixel(140, 160, 0) / (double)get_pixel(140, 160, 3) + 1, // bottom
         };
-        std::cout << ("arr2") << std::endl;
+        // std::cout << ("arr2") << std::endl;
         for (int i = 0; i <= 3; i++)
         {
             if (check_if_different(old[i], nEw[i]))
@@ -61,7 +61,7 @@ int main()
         }
         
     }
-
+    convert_camera_to_screen();
     update_screen();
     close_screen_stream();
     return 0;
