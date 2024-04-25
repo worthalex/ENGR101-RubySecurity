@@ -14,6 +14,13 @@
 // const int numRowSamples = (int)(numCols / pxBetweenSamples);
 // const int numColSamples = (int)(numRows / pxBetweenSamples);
 const int redThreshold = 40;
+const int centerRow = 120;
+const int centerCol = 160;
+
+const int lft = 132;
+const int rgt = 188;
+const int top = 92;
+const int bot = 148;
 
 bool check_if_different(double old, double nEw)
 {
@@ -33,10 +40,10 @@ int main()
     open_screen_stream();
     take_picture();
     double old[4] = {
-        (double)get_pixel(120, 140, 0) / (double)get_pixel(120, 140, 3) + 1, // left
-        (double)get_pixel(120, 180, 0) / (double)get_pixel(120, 180, 3) + 1, // right
-        (double)get_pixel(100, 160, 0) / (double)get_pixel(100, 160, 3) + 1, // top
-        (double)get_pixel(140, 160, 0) / (double)get_pixel(140, 160, 3) + 1, // bottom
+        (double)get_pixel(centerRow, lft, 0) / (double)get_pixel(centerRow, lft, 3) + 1, // left
+        (double)get_pixel(centerRow, rgt, 0) / (double)get_pixel(centerRow, rgt, 3) + 1, // right
+        (double)get_pixel(top, centerCol, 0) / (double)get_pixel(top, centerCol, 3) + 1, // top
+        (double)get_pixel(bot, centerCol, 0) / (double)get_pixel(bot, centerCol, 3) + 1, // bottom
     };
     // std::cout << ("arr1") << std::endl;
     
@@ -44,18 +51,18 @@ int main()
     {
         // std::cout << ("while") << std::endl;
         take_picture();
-        set_pixel(120, 140, 100, 255, 100);
-        set_pixel(120, 180, 100, 255, 100);
-        set_pixel(100, 160, 100, 255, 100);
-        set_pixel(140, 160, 100, 255, 100);
+        set_pixel(centerRow, lft, 100, 255, 100);
+        set_pixel(centerRow, rgt, 100, 255, 100);
+        set_pixel(top, centerCol, 100, 255, 100);
+        set_pixel(bot, centerCol, 100, 255, 100);
         convert_camera_to_screen();
         update_screen();
 
         double nEw[4] = {
-            (double)get_pixel(120, 140, 0) / (double)get_pixel(120, 140, 3) + 1, // left
-            (double)get_pixel(120, 180, 0) / (double)get_pixel(120, 180, 3) + 1, // right
-            (double)get_pixel(100, 160, 0) / (double)get_pixel(100, 160, 3) + 1, // top
-            (double)get_pixel(140, 160, 0) / (double)get_pixel(140, 160, 3) + 1, // bottom
+            (double)get_pixel(centerRow, lft, 0) / (double)get_pixel(centerRow, lft, 3) + 1, // left
+            (double)get_pixel(centerRow, rgt, 0) / (double)get_pixel(centerRow, rgt, 3) + 1, // right
+            (double)get_pixel(top, centerCol, 0) / (double)get_pixel(top, centerCol, 3) + 1, // top
+            (double)get_pixel(bot, centerCol, 0) / (double)get_pixel(bot, centerCol, 3) + 1, // bottom
         };
         // std::cout << ("arr2") << std::endl;
         for (int i = 0; i <= 3; i++)
