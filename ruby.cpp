@@ -8,17 +8,19 @@
 
 #include <iostream>
 #include "E101.h"
-const int pxBetweenSamples = 8;
-const int numRows = 240;
-const int numCols = 320;
-const int numRowSamples = (int)(numCols / pxBetweenSamples);
-const int numColSamples = (int)(numRows / pxBetweenSamples);
+// const int pxBetweenSamples = 8;
+// const int numRows = 240;
+// const int numCols = 320;
+// const int numRowSamples = (int)(numCols / pxBetweenSamples);
+// const int numColSamples = (int)(numRows / pxBetweenSamples);
 const int redThreshold = 40;
 
 bool check_if_different(double old, double nEw)
 {
+    std::cout << ("call") << std::endl;
     if ((nEw + old)/ 2 > (old * 2) + redThreshold || (nEw + old)/ 2 > (old * 2) + redThreshold)
     {
+        std::cout << ("gorg") << std::endl;
         return true;
     }
     return false;
@@ -36,9 +38,11 @@ int main()
         get_pixel(100, 160, 0) / get_pixel(100, 160, 3) + 1, // top
         get_pixel(140, 160, 0) / get_pixel(140, 160, 3) + 1, // bottom
     };
+    std::cout << ("arr1") << std::endl;
     
     while (true)
     {
+        std::cout << ("while") << std::endl;
         take_picture();
         double nEw[4] = {
             get_pixel(120, 140, 0) / get_pixel(120, 140, 3) + 1, // left
@@ -46,7 +50,7 @@ int main()
             get_pixel(100, 160, 0) / get_pixel(100, 160, 3) + 1, // top
             get_pixel(140, 160, 0) / get_pixel(140, 160, 3) + 1, // bottom
         };
-
+        std::cout << ("arr2") << std::endl;
         for (int i = 0; i <= 3; i++)
         {
             if (check_if_different(old[i], nEw[i]))
