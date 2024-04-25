@@ -31,31 +31,31 @@ int main()
     int err = init(0);
     std::cout << "Error: " << err << std::endl;
     open_screen_stream();
-    take_picture();
 
-    // while (true)
+    // // while (true)
+    // // {
+    // //     take_picture();
+    // //     std::cout << ((double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3)) << std::endl;
+    // //     sleep1(1000);
+    // //     convert_camera_to_screen();
+    // //     update_screen();
+    // // }
+    // double initRelRed = (double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3);
+    // if (initRelRed > relRed + margin || initRelRed < relRed - margin)
     // {
-    //     take_picture();
-    //     std::cout << ((double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3)) << std::endl;
-    //     sleep1(1000);
+    //     std::cout << "ALERT!!! Ruby missing at startup!" << std::endl;
+    //     set_pixel(centerRow, lft, 100, 255, 100);
+    //     set_pixel(centerRow, rgt, 100, 255, 100);
+    //     set_pixel(top, centerCol, 100, 255, 100);
+    //     set_pixel(bot, centerCol, 100, 255, 100);
     //     convert_camera_to_screen();
     //     update_screen();
+    //     stoph();
+    //     return 0;
     // }
-    double initRelRed = (double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3);
-    if (initRelRed > relRed + margin || initRelRed < relRed - margin)
-    {
-        std::cout << "ALERT!!! Ruby missing at startup!" << std::endl;
-        set_pixel(centerRow, lft, 100, 255, 100);
-        set_pixel(centerRow, rgt, 100, 255, 100);
-        set_pixel(top, centerCol, 100, 255, 100);
-        set_pixel(bot, centerCol, 100, 255, 100);
-        convert_camera_to_screen();
-        update_screen();
-        stoph();
-        return 0;
-    }
-    // std::cout << ("arr1") << std::endl;
+    // // std::cout << ("arr1") << std::endl;
     
+    bool firstFrame = true;
     while (true)
     {
         // std::cout << ("while") << std::endl;
@@ -84,9 +84,20 @@ int main()
             // std::cout << relRed; std::cout << " +- "; std::cout << margin << std::endl;
             if (pixels[i] > relRed + margin || pixels[i] < relRed - margin)
             {
-                std::cout << ("ALERT!!! Ruby stolen!") << std::endl;
+                if (firstFrame)
+                {
+                    std::cout << ("ALERT!!! Ruby not present at startup!") << std::endl;
+                } else 
+                {
+                    std::cout << ("ALERT!!! Ruby stolen!") << std::endl;
+                }
                 stoph();
                 return 0;
+            }
+            if (firstFrame)
+            {
+                std::cout << ("Ruby monitor started, ruby is present") << std::endl;
+                firstFrame = false;
             }
         }
         
