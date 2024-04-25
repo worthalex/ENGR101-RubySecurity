@@ -36,7 +36,7 @@ int main()
     while (true)
     {
         take_picture();
-        std::cout << ((double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3)) << std::cout;
+        std::cout << ((double)get_pixel(centerRow, centerCol, 0) / (double)get_pixel(centerRow, centerCol, 3)) << std::endl;
         sleep1(1000);
         convert_camera_to_screen();
         update_screen();
