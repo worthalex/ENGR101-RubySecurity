@@ -46,6 +46,7 @@ int main()
     {
         std::cout << "ALERT!!! Ruby missing at startup!" << std::endl;
         stoph();
+        return 0;
     }
     // std::cout << ("arr1") << std::endl;
     
@@ -79,6 +80,7 @@ int main()
             {
                 std::cout << ("ALERT!!! Ruby stolen!") << std::endl;
                 stoph();
+                return 0;
             }
         }
         
