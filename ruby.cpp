@@ -23,8 +23,8 @@ const int bot = centerRow + offset;
 const int lft = centerCol - offset;
 const int rgt = centerCol + offset;
 
-const double relRed = 2.9;
-const double margin = 1.2;
+const double relRed = 4.9;
+const double margin = 3.2;
 
 int main()
 {
