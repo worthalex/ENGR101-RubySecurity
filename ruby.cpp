@@ -71,14 +71,14 @@ int main()
 
         for (int i = 0; i <= 3; i++)
         {
-            std::cout << " " << std::endl;
-            std::cout << i << std::endl;
-            std::cout << pixels[i] << std::endl;
-            std::cout << relRed; std::cout << " +- "; std::cout << margin << std::endl;
+            // std::cout << " " << std::endl;
+            // std::cout << i << std::endl;
+            // std::cout << pixels[i] << std::endl;
+            // std::cout << relRed; std::cout << " +- "; std::cout << margin << std::endl;
             if (pixels[i] > relRed + margin || pixels[i] < relRed - margin)
             {
                 std::cout << ("ALERT!!! Ruby stolen!") << std::endl;
-                // stoph();
+                stoph();
             }
         }
         
