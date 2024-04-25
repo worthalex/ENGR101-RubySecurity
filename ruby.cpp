@@ -45,6 +45,8 @@ int main()
     if (initRelRed > relRed + margin || initRelRed < relRed - margin)
     {
         std::cout << "ALERT!!! Ruby missing at startup!" << std::endl;
+        convert_camera_to_screen();
+        update_screen();
         stoph();
         return 0;
     }
