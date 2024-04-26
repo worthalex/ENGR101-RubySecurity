@@ -16,7 +16,7 @@
 const int centerRow = 120;
 const int centerCol = 160;
 
-const int offset = 20;
+const int offset = 5;
 const int surrOffset = 60;
 
 const int rubyTop = centerRow - offset;
