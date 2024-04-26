@@ -75,27 +75,9 @@ int main()
         stoph();
         return 0;
     }
-    if (rubyRow < surrOffset + 10)
+    if (rubyRow < surrOffset + 10 || rubyRow > numRows - (surrOffset+10) || rubyCol < surrOffset + 10 || rubyCol > numCols - (surrOffset+10))
     {
-        std::cout << ("Error! Ruby too close to top at startup!") << std::endl;
-        stoph();
-        return 0;
-    }
-    if (rubyRow > numRows - (surrOffset+10))
-    {
-        std::cout << ("Error! Ruby too close to top at startup!") << std::endl;
-        stoph();
-        return 0;
-    }
-    if (rubyCol < surrOffset + 10)
-    {
-        std::cout << ("Error! Ruby too close to left at startup!") << std::endl;
-        stoph();
-        return 0;
-    }
-    if (rubyCol > numCols - (surrOffset+10))
-    {
-        std::cout << ("Error! Ruby too close to right at startup!") << std::endl;
+        std::cout << ("Error! Ruby too close to edge at startup!") << std::endl;
         stoph();
         return 0;
     }
@@ -139,6 +121,7 @@ int main()
         // set_pixel(rubyTop, centerCol, 100, 255, 100);
         // set_pixel(rubyBottom, centerCol, 100, 255, 100);
 
+        set_pixel(rubyRow, rubyCol, 100, 255, 100);
         set_pixel(rubyRow, surrLeft, 0,0,0);
         set_pixel(rubyRow, surrRight, 0,0,0);
         set_pixel(surrTop, rubyCol, 0,0,0);
