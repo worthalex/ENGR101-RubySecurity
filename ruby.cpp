@@ -74,8 +74,8 @@ int main()
         {
             if (isRed(row, col))
             {
-                std::cout << row;
-                std::cout << " " + col << std::endl;
+                std::cout << row << std::endl;
+                std::cout << col << std::endl;
                 pixel ruby0 = {row-(pxBetweenSamples/2), col+(pxBetweenSamples/2)};
                 pixel ruby1 = {row, col};
                 pixel ruby2 = {row+pxBetweenSamples, col};
@@ -89,7 +89,7 @@ int main()
     }
     exit:
     update_screen();
-    std::cout << ruby0.row;
+    std::cout << ruby0.row << std::endl;
     if (!foundRuby)
     {
         std::cout << ("Error! Ruby not present at startup!") << std::endl;
