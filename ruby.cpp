@@ -78,9 +78,9 @@ int main()
                 std::cout << ruby1.col << std::endl;
                 std::cout << row << std::endl;
                 std::cout << col << std::endl;
-                ruby2 = {row+surrOffset, col};
-                ruby3 = {row, col+surrOffset};
-                ruby4 = {row+surrOffset, col+surrOffset}; 
+                ruby2 = {row+20, col};
+                ruby3 = {row, col+20};
+                ruby4 = {row+20, col+20}; 
                 set_pixel(row, col, 100, 255, 100);
                 foundRuby = true;
                 goto exit;
