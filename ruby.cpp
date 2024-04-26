@@ -20,6 +20,13 @@ const int surrOffset = 60;
 
 const double red = 1.7;
 
+bool isRed(int row, int col)
+{
+    if ((double)get_pixel(row, col, 0) / (double)get_pixel(row, col, 3) > red) {
+        return true;
+    } else {return false;}
+    
+}
 
 int main()
 {
@@ -50,43 +57,62 @@ int main()
     // }
     // // std::cout << ("arr1") << std::endl;
     
+    struct pixel {int row; int col;};
     bool firstFrame = true;
 
     take_picture();
     convert_camera_to_screen();
-    int rubyRow = -1;
-    int rubyCol = -1;
+    pixel ruby0 = {-1, -1};
+    pixel ruby1;
+    pixel ruby2;
+    pixel ruby3;
+    pixel ruby4;
     for (int row = 0; row < numRows; row += pxBetweenSamples)
     {
         for (int col = 0; col < numCols; col += pxBetweenSamples)
         {
-            if (get_pixel(row, col, 0) / get_pixel(row, col, 3) >= red)
+            if (isRed(row, col))
             {
-                std::cout << row;
-                std::cout << col;
-                rubyRow = row; rubyCol = col;
+                pixel ruby1 = {row, col};
+                pixel ruby2 = {row+pxBetweenSamples, col};
+                pixel ruby3 = {row, col+pxBetweenSamples};
+                pixel ruby4 = {row+pxBetweenSamples, col+pxBetweenSamples}; 
+                pixel ruby0 = {row+(pxBetweenSamples/2), col+(pxBetweenSamples/2)};
                 break;
             }
         }
     }
-    if (rubyRow == -1)
+    if (ruby0.row == -1)
     {
         std::cout << ("Error! Ruby not present at startup!") << std::endl;
         stoph();
         return 0;
     }
-    if (rubyRow < surrOffset + 10 || rubyRow > numRows - (surrOffset+10) || rubyCol < surrOffset + 10 || rubyCol > numCols - (surrOffset+10))
+    if (ruby0.row < surrOffset + 10 || ruby0.row > numRows - (surrOffset+10) || ruby0.col < surrOffset + 10 || ruby0.col > numCols - (surrOffset+10))
     {
         std::cout << ("Error! Ruby too close to edge at startup!") << std::endl;
         stoph();
         return 0;
     }
 
-    const int surrTop = rubyRow - surrOffset;
-    const int surrBottom = rubyRow + surrOffset;
-    const int surrLeft = rubyCol - surrOffset;
-    const int surrRight = rubyCol + surrOffset;
-
+    const int surrTop = ruby0.row - surrOffset;
+    const int surrBottom = ruby0.row + surrOffset;
+    const int surrLeft = ruby0.col - surrOffset;
+    const int surrRight = ruby0.col + surrOffset;
+    if (isRed(ruby0.row, surrLeft) ||
+        isRed(ruby0.row, surrRight) ||
+        isRed(surrTop, ruby0.col) ||
+        isRed(surrBottom, ruby0.col) ||
+        isRed(surrTop,surrRight) ||
+        isRed(surrBottom,surrLeft) ||
+        isRed(surrTop, surrLeft) ||
+        isRed(surrBottom, surrRight))
+    {
+        std::cout << ("Error! Multiple rubies present at startup!") << std::endl;
+        stoph();
+        return 0;
+    }
+    std::cout << ("Ruby monitor started, ruby is present") << std::endl;
 
 
 
@@ -96,7 +122,30 @@ int main()
         take_picture();
         convert_camera_to_screen();
 
-        double rubyPixel = (double)get_pixel(rubyRow, rubyCol, 0) / (double)get_pixel(rubyRow, rubyCol, 3);
+        if (!isRed(ruby0.row, ruby0.col) ||
+            !isRed(ruby1.row, ruby1.col) ||
+            !isRed(ruby2.row, ruby2.col) ||
+            !isRed(ruby3.row, ruby3.col) ||
+            !isRed(ruby4.row, ruby4.col))
+        {
+            std::cout << ("ALERT!!! Ruby no longer detected; Ruby stolen!") << std::endl;
+            stoph();
+            return 0;
+        }
+
+        if (isRed(ruby0.row, surrLeft) ||
+            isRed(ruby0.row, surrRight) ||
+            isRed(surrTop, ruby0.col) ||
+            isRed(surrBottom, ruby0.col) ||
+            isRed(surrTop,surrRight) ||
+            isRed(surrBottom,surrLeft) ||
+            isRed(surrTop, surrLeft) ||
+            isRed(surrBottom, surrRight))
+        {
+            std::cout << ("ALERT!!! Multiple rubies detected; Ruby stolen!") << std::endl;
+            stoph();
+            return 0;
+        }
         // double rubyPixels[4] = {
         //     (double)get_pixel(centerRow, rubyLeft, 0) / (double)get_pixel(centerRow, rubyLeft, 3), // left
         //     (double)get_pixel(centerRow, rubyRight, 0) / (double)get_pixel(centerRow, rubyRight, 3), // right
@@ -104,16 +153,6 @@ int main()
         //     (double)get_pixel(rubyBottom, centerCol, 0) / (double)get_pixel(rubyBottom, centerCol, 3), // bottom
         // }; int rubyPixelsSize = sizeof(rubyPixels) / sizeof(double);
 
-        double surrPixels[8] = {
-            (double)get_pixel(rubyRow, surrLeft, 0) / (double)get_pixel(rubyRow, surrLeft, 3), // left
-            (double)get_pixel(rubyRow, surrRight, 0) / (double)get_pixel(rubyRow, surrRight, 3), // right
-            (double)get_pixel(surrTop, rubyCol, 0) / (double)get_pixel(surrTop, rubyCol, 3), // top
-            (double)get_pixel(surrBottom, rubyCol, 0) / (double)get_pixel(surrBottom, rubyCol, 3), // bottom
-            (double)get_pixel(surrTop, surrRight, 0) / (double)get_pixel(surrTop, surrRight, 3), // top right
-            (double)get_pixel(surrBottom, surrLeft, 0) / (double)get_pixel(surrBottom, surrLeft, 3), // bottom left
-            (double)get_pixel(surrTop, surrLeft, 0) / (double)get_pixel(surrTop, surrLeft, 3), // top left
-            (double)get_pixel(surrBottom, surrRight, 0) / (double)get_pixel(surrBottom, surrRight, 3), // bottom right
-        }; int surrPixelsSize = sizeof(surrPixels) / sizeof(double);
         // std::cout << ("arr2") << std::endl;
 
         // set_pixel(centerRow, rubyLeft, 100, 255, 100);
@@ -121,11 +160,16 @@ int main()
         // set_pixel(rubyTop, centerCol, 100, 255, 100);
         // set_pixel(rubyBottom, centerCol, 100, 255, 100);
 
-        set_pixel(rubyRow, rubyCol, 100, 255, 100);
-        set_pixel(rubyRow, surrLeft, 0,0,0);
-        set_pixel(rubyRow, surrRight, 0,0,0);
-        set_pixel(surrTop, rubyCol, 0,0,0);
-        set_pixel(surrBottom, rubyCol, 0,0,0);
+        set_pixel(ruby0.row, ruby0.col, 100, 255, 100);
+        set_pixel(ruby1.row, ruby1.col, 100, 255, 100);
+        set_pixel(ruby2.row, ruby2.col, 100, 255, 100);
+        set_pixel(ruby3.row, ruby3.col, 100, 255, 100);
+        set_pixel(ruby4.row, ruby4.col, 100, 255, 100);
+        
+        set_pixel(ruby0.row, surrLeft, 0,0,0);
+        set_pixel(ruby0.row, surrRight, 0,0,0);
+        set_pixel(surrTop, ruby0.col, 0,0,0);
+        set_pixel(surrBottom, ruby0.col, 0,0,0);
         set_pixel(surrTop, surrLeft, 0,0,0);
         set_pixel(surrTop, surrRight, 0,0,0);
         set_pixel(surrBottom, surrLeft, 0,0,0);
@@ -136,34 +180,7 @@ int main()
             // std::cout << i << std::endl;
             // std::cout << pixels[i] << std::endl;
         // std::cout << relRed; std::cout << " +- "; std::cout << margin << std::endl;
-        if (rubyPixel < red)
-        {
-            std::cout << ("ALERT!!! Ruby no longer detected; Ruby stolen!") << std::endl;
-            stoph();
-            return 0;
-        }
-        for (int i = 0; i < surrPixelsSize; i++)
-        {
-            if (surrPixels[i] >= red)
-            {
-                if (!firstFrame)
-                {
-                    std::cout << ("ALERT!!! Multiple rubies detected; Ruby stolen!") << std::endl;
-                } else
-                {
-                    std::cout << ("Error! Multiple rubies present at startup!") << std::endl;
-                }
-                stoph();
-                return 0;
 
-            }
-        } 
-
-        if (firstFrame)
-        {
-            std::cout << ("Ruby monitor started, ruby is present") << std::endl;
-            firstFrame = false;
-        }
         
     }
     
