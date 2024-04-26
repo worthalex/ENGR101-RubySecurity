@@ -17,16 +17,17 @@ const int centerRow = 120;
 const int centerCol = 160;
 
 const int offset = 20;
+const int surrOffset = 60;
 
 const int rubyTop = centerRow - offset;
 const int rubyBottom = centerRow + offset;
 const int rubyLeft = centerCol - offset;
 const int rubyRight = centerCol + offset;
 
-const int surroundingTop = centerRow - 2*offset;
-const int surroundingBottom = centerRow + 2*offset;
-const int surroundingLeft = centerCol - 2*offset;
-const int surroundingRight = centerCol + 2*offset;
+const int surrTop = centerRow - surrOffset;
+const int surrBottom = centerRow + surrOffset;
+const int surrLeft = centerCol - surrOffset;
+const int surrRight = centerCol + surrOffset;
 
 const double red = 1.7;
 
@@ -74,14 +75,14 @@ int main()
         }; int rubyPixelsSize = sizeof(rubyPixels) / sizeof(double);
 
         double surrPixels[8] = {
-            (double)get_pixel(centerRow, surroundingLeft, 0) / (double)get_pixel(centerRow, surroundingLeft, 3), // left
-            (double)get_pixel(centerRow, surroundingRight, 0) / (double)get_pixel(centerRow, surroundingRight, 3), // right
-            (double)get_pixel(surroundingTop, centerCol, 0) / (double)get_pixel(surroundingTop, centerCol, 3), // top
-            (double)get_pixel(surroundingBottom, centerCol, 0) / (double)get_pixel(surroundingBottom, centerCol, 3), // bottom
-            (double)get_pixel(surroundingTop, surroundingRight, 0) / (double)get_pixel(surroundingTop, surroundingRight, 3), // top right
-            (double)get_pixel(surroundingBottom, surroundingLeft, 0) / (double)get_pixel(surroundingBottom, surroundingLeft, 3), // bottom left
-            (double)get_pixel(surroundingTop, surroundingLeft, 0) / (double)get_pixel(surroundingTop, surroundingLeft, 3), // top left
-            (double)get_pixel(surroundingBottom, surroundingRight, 0) / (double)get_pixel(surroundingBottom, surroundingRight, 3), // bottom right
+            (double)get_pixel(centerRow, surrLeft, 0) / (double)get_pixel(centerRow, surrLeft, 3), // left
+            (double)get_pixel(centerRow, surrRight, 0) / (double)get_pixel(centerRow, surrRight, 3), // right
+            (double)get_pixel(surrTop, centerCol, 0) / (double)get_pixel(surrTop, centerCol, 3), // top
+            (double)get_pixel(surrBottom, centerCol, 0) / (double)get_pixel(surrBottom, centerCol, 3), // bottom
+            (double)get_pixel(surrTop, surrRight, 0) / (double)get_pixel(surrTop, surrRight, 3), // top right
+            (double)get_pixel(surrBottom, surrLeft, 0) / (double)get_pixel(surrBottom, surrLeft, 3), // bottom left
+            (double)get_pixel(surrTop, surrLeft, 0) / (double)get_pixel(surrTop, surrLeft, 3), // top left
+            (double)get_pixel(surrBottom, surrRight, 0) / (double)get_pixel(surrBottom, surrRight, 3), // bottom right
         }; int surrPixelsSize = sizeof(rubyPixels) / sizeof(double);
         // std::cout << ("arr2") << std::endl;
 
@@ -90,14 +91,14 @@ int main()
         set_pixel(rubyTop, centerCol, 100, 255, 100);
         set_pixel(rubyBottom, centerCol, 100, 255, 100);
 
-        set_pixel(centerRow, surroundingLeft, 100, 100, 255);
-        set_pixel(centerRow, surroundingRight, 100, 100, 255);
-        set_pixel(surroundingTop, centerCol, 100, 100, 255);
-        set_pixel(surroundingBottom, centerCol, 100, 100, 255);
-        set_pixel(surroundingTop, surroundingLeft, 100, 100, 255);
-        set_pixel(surroundingTop, surroundingRight, 100, 100, 255);
-        set_pixel(surroundingBottom, surroundingLeft, 100, 100, 255);
-        set_pixel(surroundingBottom, surroundingRight, 100, 100, 255);
+        set_pixel(centerRow, surrLeft, 0,0,0);
+        set_pixel(centerRow, surrRight, 0,0,0);
+        set_pixel(surrTop, centerCol, 0,0,0);
+        set_pixel(surrBottom, centerCol, 0,0,0);
+        set_pixel(surrTop, surrLeft, 0,0,0);
+        set_pixel(surrTop, surrRight, 0,0,0);
+        set_pixel(surrBottom, surrLeft, 0,0,0);
+        set_pixel(surrBottom, surrRight, 0,0,0);
         update_screen();
 
         for (int i = 0; i < rubyPixelsSize; i++)
