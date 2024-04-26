@@ -91,7 +91,7 @@ int main()
         stoph();
         return 0;
     }
-    if (ruby1.row < surrOffset + 10 || ruby1.row > numRows - (surrOffset+10) || ruby1.col < surrOffset + 10 || ruby1.col > numCols - (surrOffset+10))
+    if (ruby1.row < surrOffset + 20 || ruby1.row > numRows - (surrOffset+20) || ruby1.col < surrOffset + 20 || ruby1.col > numCols - (surrOffset+20))
     {
         std::cout << ("Error! Ruby too close to edge at startup!") << std::endl;
         stoph();
