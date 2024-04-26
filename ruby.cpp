@@ -63,7 +63,6 @@ int main()
     take_picture();
     convert_camera_to_screen();
     bool foundRuby = false;
-    pixel ruby0;
     pixel ruby1;
     pixel ruby2;
     pixel ruby3;
@@ -76,7 +75,6 @@ int main()
             {
                 std::cout << row << std::endl;
                 std::cout << col << std::endl;
-                pixel ruby0 = {(int)((double)row-((double)pxBetweenSamples/2.0)), (int)(col+((double)pxBetweenSamples/2.0))};
                 pixel ruby1 = {row, col};
                 pixel ruby2 = {row+pxBetweenSamples, col};
                 pixel ruby3 = {row, col+pxBetweenSamples};
@@ -89,28 +87,28 @@ int main()
     }
     exit:
     update_screen();
-    std::cout << ruby0.row << std::endl;
+    std::cout << ruby1.row << std::endl;
     if (!foundRuby)
     {
         std::cout << ("Error! Ruby not present at startup!") << std::endl;
         stoph();
         return 0;
     }
-    if (ruby0.row < surrOffset + 10 || ruby0.row > numRows - (surrOffset+10) || ruby0.col < surrOffset + 10 || ruby0.col > numCols - (surrOffset+10))
+    if (ruby1.row < surrOffset + 10 || ruby1.row > numRows - (surrOffset+10) || ruby1.col < surrOffset + 10 || ruby1.col > numCols - (surrOffset+10))
     {
         std::cout << ("Error! Ruby too close to edge at startup!") << std::endl;
         stoph();
         return 0;
     }
 
-    const int surrTop = ruby0.row - surrOffset;
-    const int surrBottom = ruby0.row + surrOffset;
-    const int surrLeft = ruby0.col - surrOffset;
-    const int surrRight = ruby0.col + surrOffset;
-    if (isRed(ruby0.row, surrLeft) ||
-        isRed(ruby0.row, surrRight) ||
-        isRed(surrTop, ruby0.col) ||
-        isRed(surrBottom, ruby0.col) ||
+    const int surrTop = ruby1.row - surrOffset;
+    const int surrBottom = ruby1.row + surrOffset;
+    const int surrLeft = ruby1.col - surrOffset;
+    const int surrRight = ruby1.col + surrOffset;
+    if (isRed(ruby1.row, surrLeft) ||
+        isRed(ruby1.row, surrRight) ||
+        isRed(surrTop, ruby1.col) ||
+        isRed(surrBottom, ruby1.col) ||
         isRed(surrTop,surrRight) ||
         isRed(surrBottom,surrLeft) ||
         isRed(surrTop, surrLeft) ||
@@ -130,7 +128,7 @@ int main()
         take_picture();
         convert_camera_to_screen();
 
-        if (!isRed(ruby0.row, ruby0.col) ||
+        if (!isRed(ruby1.row, ruby1.col) ||
             !isRed(ruby1.row, ruby1.col) ||
             !isRed(ruby2.row, ruby2.col) ||
             !isRed(ruby3.row, ruby3.col) ||
@@ -141,10 +139,10 @@ int main()
             return 0;
         }
 
-        if (isRed(ruby0.row, surrLeft) ||
-            isRed(ruby0.row, surrRight) ||
-            isRed(surrTop, ruby0.col) ||
-            isRed(surrBottom, ruby0.col) ||
+        if (isRed(ruby1.row, surrLeft) ||
+            isRed(ruby1.row, surrRight) ||
+            isRed(surrTop, ruby1.col) ||
+            isRed(surrBottom, ruby1.col) ||
             isRed(surrTop,surrRight) ||
             isRed(surrBottom,surrLeft) ||
             isRed(surrTop, surrLeft) ||
@@ -168,16 +166,16 @@ int main()
         // set_pixel(rubyTop, centerCol, 100, 255, 100);
         // set_pixel(rubyBottom, centerCol, 100, 255, 100);
 
-        set_pixel(ruby0.row, ruby0.col, 100, 255, 100);
+        set_pixel(ruby1.row, ruby1.col, 100, 255, 100);
         set_pixel(ruby1.row, ruby1.col, 100, 255, 100);
         set_pixel(ruby2.row, ruby2.col, 100, 255, 100);
         set_pixel(ruby3.row, ruby3.col, 100, 255, 100);
         set_pixel(ruby4.row, ruby4.col, 100, 255, 100);
         
-        set_pixel(ruby0.row, surrLeft, 0,0,0);
-        set_pixel(ruby0.row, surrRight, 0,0,0);
-        set_pixel(surrTop, ruby0.col, 0,0,0);
-        set_pixel(surrBottom, ruby0.col, 0,0,0);
+        set_pixel(ruby1.row, surrLeft, 0,0,0);
+        set_pixel(ruby1.row, surrRight, 0,0,0);
+        set_pixel(surrTop, ruby1.col, 0,0,0);
+        set_pixel(surrBottom, ruby1.col, 0,0,0);
         set_pixel(surrTop, surrLeft, 0,0,0);
         set_pixel(surrTop, surrRight, 0,0,0);
         set_pixel(surrBottom, surrLeft, 0,0,0);
