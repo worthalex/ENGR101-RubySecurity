@@ -74,10 +74,6 @@ int main()
             if (isRed(row, col))
             {
                 ruby1 = {row, col};
-                std::cout << ruby1.row << std::endl;
-                std::cout << ruby1.col << std::endl;
-                std::cout << row << std::endl;
-                std::cout << col << std::endl;
                 ruby2 = {row+20, col};
                 ruby3 = {row, col+20};
                 ruby4 = {row+20, col+20}; 
@@ -89,8 +85,6 @@ int main()
     }
     exit:
     update_screen();
-    std::cout << ruby1.row << std::endl;
-    std::cout << ruby1.col << std::endl;
     if (!foundRuby)
     {
         std::cout << ("Error! Ruby not present at startup!") << std::endl;
@@ -132,7 +126,6 @@ int main()
         convert_camera_to_screen();
 
         if (!isRed(ruby1.row, ruby1.col) ||
-            !isRed(ruby1.row, ruby1.col) ||
             !isRed(ruby2.row, ruby2.col) ||
             !isRed(ruby3.row, ruby3.col) ||
             !isRed(ruby4.row, ruby4.col))
