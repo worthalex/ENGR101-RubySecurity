@@ -76,7 +76,7 @@ int main()
             {
                 std::cout << row << std::endl;
                 std::cout << col << std::endl;
-                pixel ruby0 = {row-(pxBetweenSamples/2), col+(pxBetweenSamples/2)};
+                pixel ruby0 = {(int)(row-(pxBetweenSamples/2)), (int)(col+(pxBetweenSamples/2))};
                 pixel ruby1 = {row, col};
                 pixel ruby2 = {row+pxBetweenSamples, col};
                 pixel ruby3 = {row, col+pxBetweenSamples};
