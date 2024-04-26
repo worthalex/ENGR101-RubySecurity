@@ -74,9 +74,9 @@ int main()
             if (isRed(row, col))
             {
                 ruby1 = {row, col};
-                ruby2 = {row+20, col};
-                ruby3 = {row, col+20};
-                ruby4 = {row+20, col+20}; 
+                ruby2 = {row+20, col+5};
+                ruby3 = {row+5, col+20};
+                ruby4 = {row+30, col+30}; 
                 set_pixel(row, col, 100, 255, 100);
                 foundRuby = true;
                 goto exit;
