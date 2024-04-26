@@ -62,6 +62,8 @@ int main()
         {
             if (get_pixel(row, col, 0) / get_pixel(row, col, 3) >= red)
             {
+                std::cout << row;
+                std::cout << col;
                 rubyRow = row; rubyCol = col;
                 break;
             }
