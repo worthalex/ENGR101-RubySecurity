@@ -80,10 +80,12 @@ int main()
                 pixel ruby2 = {row+pxBetweenSamples, col};
                 pixel ruby3 = {row, col+pxBetweenSamples};
                 pixel ruby4 = {row+pxBetweenSamples, col+pxBetweenSamples}; 
+                set_pixel(row, col, 100, 255, 100);
                 break;
             }
         }
     }
+    update_screen();
     std::cout << ruby0.row;
     if (ruby0.row == -1)
     {
