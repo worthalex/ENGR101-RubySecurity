@@ -62,7 +62,8 @@ int main()
 
     take_picture();
     convert_camera_to_screen();
-    pixel ruby0 = {-1, -1};
+    bool foundRuby = false;
+    pixel ruby0;
     pixel ruby1;
     pixel ruby2;
     pixel ruby3;
@@ -81,6 +82,7 @@ int main()
                 pixel ruby3 = {row, col+pxBetweenSamples};
                 pixel ruby4 = {row+pxBetweenSamples, col+pxBetweenSamples}; 
                 set_pixel(row, col, 100, 255, 100);
+                foundRuby = true;
                 goto exit;
             }
         }
@@ -88,7 +90,7 @@ int main()
     exit:
     update_screen();
     std::cout << ruby0.row;
-    if (ruby0.row == -1)
+    if (!foundRuby)
     {
         std::cout << ("Error! Ruby not present at startup!") << std::endl;
         stoph();
