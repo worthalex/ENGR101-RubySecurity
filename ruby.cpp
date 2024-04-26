@@ -8,28 +8,18 @@
 
 #include <iostream>
 #include "E101.h"
-// const int pxBetweenSamples = 8;
-// const int numRows = 240;
-// const int numCols = 320;
+const int pxBetweenSamples = 8;
+const int numRows = 240;
+const int numCols = 320;
 // const int numRowSamples = (int)(numCols / pxBetweenSamples);
 // const int numColSamples = (int)(numRows / pxBetweenSamples);
-const int centerRow = 120;
-const int centerCol = 160;
 
-const int offset = 5;
 const int surrOffset = 60;
 
-const int rubyTop = centerRow - offset;
-const int rubyBottom = centerRow + offset;
-const int rubyLeft = centerCol - offset;
-const int rubyRight = centerCol + offset;
 
-const int surrTop = centerRow - surrOffset;
-const int surrBottom = centerRow + surrOffset;
-const int surrLeft = centerCol - surrOffset;
-const int surrRight = centerCol + surrOffset;
 
 const double red = 1.7;
+
 
 int main()
 {
@@ -61,69 +51,115 @@ int main()
     // // std::cout << ("arr1") << std::endl;
     
     bool firstFrame = true;
+
+    take_picture();
+    convert_camera_to_screen();
+    int rubyRow = -1;
+    int rubyCol = -1;
+    for (int row = 0; row < numRows; row += pxBetweenSamples)
+    {
+        for (int col = 0; col < numCols; col += pxBetweenSamples)
+        {
+            if (get_pixel(row, col, 0) / get_pixel(row, col, 3) >= red)
+            {
+                rubyRow = row; rubyCol = col;
+                break;
+            }
+        }
+    }
+    if (rubyRow == -1)
+    {
+        std::cout << ("Error! Ruby not present at startup!") << std::endl;
+        stoph();
+        return 0;
+    }
+    if (rubyRow < surrOffset + 10)
+    {
+        std::cout << ("Error! Ruby too close to top at startup!") << std::endl;
+        stoph();
+        return 0;
+    }
+    if (rubyRow > numRows - (surrOffset+10))
+    {
+        std::cout << ("Error! Ruby too close to top at startup!") << std::endl;
+        stoph();
+        return 0;
+    }
+    if (rubyCol < surrOffset + 10)
+    {
+        std::cout << ("Error! Ruby too close to left at startup!") << std::endl;
+        stoph();
+        return 0;
+    }
+    if (rubyCol > numCols - (surrOffset+10))
+    {
+        std::cout << ("Error! Ruby too close to right at startup!") << std::endl;
+        stoph();
+        return 0;
+    }
+
+    const int surrTop = rubyRow - surrOffset;
+    const int surrBottom = rubyRow + surrOffset;
+    const int surrLeft = rubyCol - surrOffset;
+    const int surrRight = rubyCol + surrOffset;
+
+
+
+
     while (true)
     {
         // std::cout << ("while") << std::endl;
         take_picture();
         convert_camera_to_screen();
 
-        double rubyPixels[4] = {
-            (double)get_pixel(centerRow, rubyLeft, 0) / (double)get_pixel(centerRow, rubyLeft, 3), // left
-            (double)get_pixel(centerRow, rubyRight, 0) / (double)get_pixel(centerRow, rubyRight, 3), // right
-            (double)get_pixel(rubyTop, centerCol, 0) / (double)get_pixel(rubyTop, centerCol, 3), // top
-            (double)get_pixel(rubyBottom, centerCol, 0) / (double)get_pixel(rubyBottom, centerCol, 3), // bottom
-        }; int rubyPixelsSize = sizeof(rubyPixels) / sizeof(double);
+        double rubyPixel = (double)get_pixel(rubyRow, rubyCol, 0) / (double)get_pixel(rubyRow, rubyCol, 3);
+        // double rubyPixels[4] = {
+        //     (double)get_pixel(centerRow, rubyLeft, 0) / (double)get_pixel(centerRow, rubyLeft, 3), // left
+        //     (double)get_pixel(centerRow, rubyRight, 0) / (double)get_pixel(centerRow, rubyRight, 3), // right
+        //     (double)get_pixel(rubyTop, centerCol, 0) / (double)get_pixel(rubyTop, centerCol, 3), // top
+        //     (double)get_pixel(rubyBottom, centerCol, 0) / (double)get_pixel(rubyBottom, centerCol, 3), // bottom
+        // }; int rubyPixelsSize = sizeof(rubyPixels) / sizeof(double);
 
         double surrPixels[8] = {
-            (double)get_pixel(centerRow, surrLeft, 0) / (double)get_pixel(centerRow, surrLeft, 3), // left
-            (double)get_pixel(centerRow, surrRight, 0) / (double)get_pixel(centerRow, surrRight, 3), // right
-            (double)get_pixel(surrTop, centerCol, 0) / (double)get_pixel(surrTop, centerCol, 3), // top
-            (double)get_pixel(surrBottom, centerCol, 0) / (double)get_pixel(surrBottom, centerCol, 3), // bottom
+            (double)get_pixel(rubyRow, surrLeft, 0) / (double)get_pixel(rubyRow, surrLeft, 3), // left
+            (double)get_pixel(rubyRow, surrRight, 0) / (double)get_pixel(rubyRow, surrRight, 3), // right
+            (double)get_pixel(surrTop, rubyCol, 0) / (double)get_pixel(surrTop, rubyCol, 3), // top
+            (double)get_pixel(surrBottom, rubyCol, 0) / (double)get_pixel(surrBottom, rubyCol, 3), // bottom
             (double)get_pixel(surrTop, surrRight, 0) / (double)get_pixel(surrTop, surrRight, 3), // top right
             (double)get_pixel(surrBottom, surrLeft, 0) / (double)get_pixel(surrBottom, surrLeft, 3), // bottom left
             (double)get_pixel(surrTop, surrLeft, 0) / (double)get_pixel(surrTop, surrLeft, 3), // top left
             (double)get_pixel(surrBottom, surrRight, 0) / (double)get_pixel(surrBottom, surrRight, 3), // bottom right
-        }; int surrPixelsSize = sizeof(rubyPixels) / sizeof(double);
+        }; int surrPixelsSize = sizeof(surrPixels) / sizeof(double);
         // std::cout << ("arr2") << std::endl;
 
-        set_pixel(centerRow, rubyLeft, 100, 255, 100);
-        set_pixel(centerRow, rubyRight, 100, 255, 100);
-        set_pixel(rubyTop, centerCol, 100, 255, 100);
-        set_pixel(rubyBottom, centerCol, 100, 255, 100);
+        // set_pixel(centerRow, rubyLeft, 100, 255, 100);
+        // set_pixel(centerRow, rubyRight, 100, 255, 100);
+        // set_pixel(rubyTop, centerCol, 100, 255, 100);
+        // set_pixel(rubyBottom, centerCol, 100, 255, 100);
 
-        set_pixel(centerRow, surrLeft, 0,0,0);
-        set_pixel(centerRow, surrRight, 0,0,0);
-        set_pixel(surrTop, centerCol, 0,0,0);
-        set_pixel(surrBottom, centerCol, 0,0,0);
+        set_pixel(rubyRow, surrLeft, 0,0,0);
+        set_pixel(rubyRow, surrRight, 0,0,0);
+        set_pixel(surrTop, rubyCol, 0,0,0);
+        set_pixel(surrBottom, rubyCol, 0,0,0);
         set_pixel(surrTop, surrLeft, 0,0,0);
         set_pixel(surrTop, surrRight, 0,0,0);
         set_pixel(surrBottom, surrLeft, 0,0,0);
         set_pixel(surrBottom, surrRight, 0,0,0);
         update_screen();
 
-        for (int i = 0; i < rubyPixelsSize; i++)
-        {
             // std::cout << " " << std::endl;
             // std::cout << i << std::endl;
             // std::cout << pixels[i] << std::endl;
-            // std::cout << relRed; std::cout << " +- "; std::cout << margin << std::endl;
-            if (rubyPixels[i] < red)
-            {
-                if (!firstFrame)
-                {
-                    std::cout << ("ALERT!!! Ruby no longer detected; Ruby stolen!") << std::endl;
-
-                } else 
-                {
-                    std::cout << ("Error! Ruby not present at startup!") << std::endl;
-                }
-                stoph();
-                return 0;
-            }
+        // std::cout << relRed; std::cout << " +- "; std::cout << margin << std::endl;
+        if (rubyPixel < red)
+        {
+            std::cout << ("ALERT!!! Ruby no longer detected; Ruby stolen!") << std::endl;
+            stoph();
+            return 0;
         }
         for (int i = 0; i < surrPixelsSize; i++)
         {
-            if (surrPixels[i] > red)
+            if (surrPixels[i] >= red)
             {
                 if (!firstFrame)
                 {
