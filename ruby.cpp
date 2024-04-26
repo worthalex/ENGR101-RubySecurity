@@ -74,6 +74,10 @@ int main()
             if (isRed(row, col))
             {
                 pixel ruby1 = {row, col};
+                std::cout << ruby1.row << std::endl;
+                std::cout << ruby1.col << std::endl;
+                std::cout << row << std::endl;
+                std::cout << col << std::endl;
                 pixel ruby2 = {row+pxBetweenSamples, col};
                 pixel ruby3 = {row, col+pxBetweenSamples};
                 pixel ruby4 = {row+pxBetweenSamples, col+pxBetweenSamples}; 
