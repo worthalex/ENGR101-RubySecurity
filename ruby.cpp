@@ -73,11 +73,11 @@ int main()
         {
             if (isRed(row, col))
             {
+                pixel ruby0 = {row-(pxBetweenSamples/2), col+(pxBetweenSamples/2)};
                 pixel ruby1 = {row, col};
                 pixel ruby2 = {row+pxBetweenSamples, col};
                 pixel ruby3 = {row, col+pxBetweenSamples};
                 pixel ruby4 = {row+pxBetweenSamples, col+pxBetweenSamples}; 
-                pixel ruby0 = {row+(pxBetweenSamples/2), col+(pxBetweenSamples/2)};
                 break;
             }
         }
